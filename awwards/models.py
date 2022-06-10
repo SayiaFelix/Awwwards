@@ -11,7 +11,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
     profile_photo = models.ImageField(upload_to='profiles/',null=True)
     bio = models.CharField(max_length=240, null=True)
-    phone_number = models.CharField(max_length=12)
+    contact = models.CharField(max_length=12)
 
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
@@ -58,12 +58,19 @@ class Projects(models.Model):
     description = HTMLField(max_length=200, blank=True)
     link = URLOrRelativeURLField(max_length=200)
     date = models.DateTimeField(auto_now_add=True)
-
+    technologies =models.TextField(null=True)
 
     @classmethod
     def search_by_projects(cls, search_term):
         projects = cls.objects.filter(title__icontains=search_term)
         return projects
+    
+    def save_project(self):
+        self.save()
+
+    def delete_project(self):
+        self.delete()
+
 
     @classmethod
     def get_projects_by_profile(cls, profile):

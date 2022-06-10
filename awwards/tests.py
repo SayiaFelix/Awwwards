@@ -7,7 +7,7 @@ class ProfileTestClass(TestCase):
 
     def setUp(self):
         self.user = User.objects.create(id = 1, username='cherry')
-        self.profile = Profile.objects.create(user = self.user,bio = 'love her',phone_number= 43966606)
+        self.profile = Profile.objects.create(user = self.user,bio = 'love her',contact= 43966606)
 
     def test_instance(self):
         self.assertTrue(isinstance(self.profile,Profile))
@@ -30,9 +30,9 @@ class ProjectTest(TestCase):
 
     def setUp(self):
         self.user = User.objects.create(id = 1, username='cherry')
-        self.profile = Profile.objects.create(user = self.user,bio = 'love',phone_number=43966606)
+        self.profile = Profile.objects.create(user = self.user,bio = 'love',contact=43966606)
 
-        self.project = Projects.objects.create(name = self.user,profile = self.profile,title = 'Awards',description='tell me',link= 'https://sirnews.herokuapp.com/',date='10/06/2022')
+        self.project = Projects.objects.create(name = self.user,profile = self.profile,title = 'Awards',description='tell me',link= 'https://sirnews.herokuapp.com/',date='10/06/2022', technologies='python')
 
     def test_instance(self):
         self.assertTrue(isinstance(self.project,Projects))
@@ -42,6 +42,17 @@ class ProjectTest(TestCase):
         self.project.save()
         project = Projects.get_projects()
         self.assertTrue(len(project) == 1)
+    
+    def test_save_project(self):
+        self.project.save_project()
+        project = Projects.objects.all()
+        self.assertTrue(len(project) > 0)
+    
+    def test_delete_project(self):
+        self.project.delete_project()
+        project = Projects.search_by_projects('Awards')
+        self.assertTrue(len(project) < 1)
+
 
     def test_find_project(self):
         self.project.save()
