@@ -48,3 +48,19 @@ class ProjectTest(TestCase):
         project = Projects.search_by_projects('Awards')
         self.assertTrue(len(project) > 0)
  
+class ReviewsTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(id = 1, username='cherry')
+
+        self.review= Reviews.objects.create(user= self.user, design=10, usability=10,content=10,comment="awesome work" )
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.review, Reviews))
+
+    def test_save_review(self):
+        self.assertTrue(isinstance(self.review,Reviews))
+
+    def test_get_reviews(self):
+        self.review.save()
+        review = Reviews.get_reviews()
+        self.assertTrue(len(review) == 1)
