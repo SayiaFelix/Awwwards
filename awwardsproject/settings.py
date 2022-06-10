@@ -74,9 +74,9 @@ WSGI_APPLICATION = 'awwardsproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'awardsjay',
+        'NAME': 'awwwards',
         'USER': 'moringa',
-        'PASSWORD': 'jaylora',
+        'PASSWORD': 'jayjaylora',
     }
 }
 

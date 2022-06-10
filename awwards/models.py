@@ -6,23 +6,20 @@ from django.dispatch import receiver
 from url_or_relative_url_field.fields import URLOrRelativeURLField
 import numpy as np
 
-# Create your models here.
+
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    bio= HTMLField(max_length=240, null=True)
-    profile_photo = models.ImageField(upload_to='profile/',blank = True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
+    profile_photo = models.ImageField(upload_to='profiles/',null=True)
+    bio = models.CharField(max_length=240, null=True)
     phone_number = models.CharField(max_length=12)
 
-    @receiver(post_save, sender = User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
 
-        # post_save.connect(create_user_profile, sender=User)
+        post_save.connect(create_user_profile, sender=User)
 
-    @receiver(post_save, sender = User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
+  
 
     @classmethod
     def get_profile(cls):
@@ -30,16 +27,10 @@ class Profile(models.Model):
 
         return profile
 
-    def save_profile(self):
-        self.save()
-    
-
-    def delete_profile(self):
-        self.delete()
-
+   
     @classmethod
-    def search_profile(cls, name):
-        profile = Profile.objects.filter(user__username__icontains = name)
+    def filter_by_id(cls, id):
+        profile = Profile.objects.filter(user = id).first()
         return profile
 
     @classmethod
@@ -48,13 +39,15 @@ class Profile(models.Model):
         return profile
 
     @classmethod
-    def filter_by_id(cls, id):
-        profile = Profile.objects.filter(user = id).first()
+    def search_profile(cls, name):
+        profile = Profile.objects.filter(user__username__icontains = name)
         return profile
+        
+    def delete_profile(self):
+         self.delete()
 
-
-    def __str__(self):
-        return self.bio
+    def save_profile(self):
+        self.save()
 
 
 class Projects(models.Model):
