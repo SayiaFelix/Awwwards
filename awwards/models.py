@@ -42,7 +42,7 @@ class Profile(models.Model):
     def search_profile(cls, name):
         profile = Profile.objects.filter(user__username__icontains = name)
         return profile
-        
+
     def delete_profile(self):
          self.delete()
 
@@ -51,15 +51,14 @@ class Profile(models.Model):
 
 
 class Projects(models.Model):
-    profile = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.ForeignKey(User, null=True,on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     title = models.CharField(max_length=20)
-    design = models.IntegerField(default=0)
-    usability = models.IntegerField(default=0)
-    content = models.IntegerField(default=0)
-    project_images = models.ImageField(upload_to = 'projects/')
+    project_photo = models.ImageField(upload_to = 'projects/')
     description = HTMLField(max_length=200, blank=True)
     link = URLOrRelativeURLField(max_length=200)
-    pub_date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
+
 
     @classmethod
     def search_by_projects(cls, search_term):
