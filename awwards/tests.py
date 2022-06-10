@@ -1,5 +1,4 @@
 from django.test import TestCase
-from psycopg2 import Date
 from .models import *
 
 
@@ -32,7 +31,7 @@ class ProjectTest(TestCase):
         self.user = User.objects.create(id = 1, username='cherry')
         self.profile = Profile.objects.create(user = self.user,bio = 'love',contact=43966606)
 
-        self.project = Projects.objects.create(name = self.user,profile = self.profile,title = 'Awards',description='tell me',link= 'https://sirnews.herokuapp.com/',date='10/06/2022', technologies='python')
+        self.project = Projects.objects.create(name = self.user,profile = self.profile,title = 'Awards',location='Nairobi',description='tell me',link= 'https://sirnews.herokuapp.com/',date='10/06/2022', technologies='python')
 
     def test_instance(self):
         self.assertTrue(isinstance(self.project,Projects))
