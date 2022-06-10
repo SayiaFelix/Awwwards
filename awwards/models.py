@@ -1,3 +1,151 @@
 from django.db import models
+from django.contrib.auth.models import User
+from tinymce.models import HTMLField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from url_or_relative_url_field.fields import URLOrRelativeURLField
+import numpy as np
 
 # Create your models here.
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    bio= HTMLField(max_length=240, null=True)
+    profile_photo = models.ImageField(upload_to='profile/',blank = True)
+    phone_number = models.CharField(max_length=12)
+
+    @receiver(post_save, sender = User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+        # post_save.connect(create_user_profile, sender=User)
+
+    @receiver(post_save, sender = User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+
+    @classmethod
+    def get_profile(cls):
+        profile = Profile.objects.all()
+
+        return profile
+
+    def save_profile(self):
+        self.save()
+    
+
+    def delete_profile(self):
+        self.delete()
+
+    @classmethod
+    def search_profile(cls, name):
+        profile = Profile.objects.filter(user__username__icontains = name)
+        return profile
+
+    @classmethod
+    def get_by_id(cls, id):
+        profile = Profile.objects.get(user = id)
+        return profile
+
+    @classmethod
+    def filter_by_id(cls, id):
+        profile = Profile.objects.filter(user = id).first()
+        return profile
+
+
+    def __str__(self):
+        return self.bio
+
+
+class Projects(models.Model):
+    profile = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=20)
+    design = models.IntegerField(default=0)
+    usability = models.IntegerField(default=0)
+    content = models.IntegerField(default=0)
+    project_images = models.ImageField(upload_to = 'projects/')
+    description = HTMLField(max_length=200, blank=True)
+    link = URLOrRelativeURLField(max_length=200)
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    @classmethod
+    def search_by_projects(cls, search_term):
+        projects = cls.objects.filter(title__icontains=search_term)
+        return projects
+
+    @classmethod
+    def get_projects_by_profile(cls, profile):
+        projects = Projects.objects.filter(profile__pk=profile)
+        return projects
+
+    @classmethod
+    def get_projects(cls):
+        projects = Projects.objects.all()
+        return projects
+
+    def design_rating(self):
+        all_designs =list( map(lambda x: x.design, self.reviews.all()))
+        return np.mean(all_designs)
+
+    def usability_rating(self):
+        all_usability =list( map(lambda x: x.usability, self.reviews.all()))
+        return np.mean(all_usability)
+
+    def content_rating(self):
+        all_content =list( map(lambda x: x.content, self.reviews.all()))
+        return np.mean(all_content)
+
+    
+
+
+    def __str__(self):
+        return self.title
+
+
+# class Reviews(models.Model):
+#     design = models.IntegerField(default=0)
+#     usability = models.IntegerField(default=0)
+#     content = models.IntegerField(default=0)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     project = models.IntegerField(default=0)
+
+#     class Meta:
+#         unique_together = (('user', 'design', 'usability', 'content', 'project'))
+#         index_together = (('user', 'design', 'usability', 'content', 'project'))
+
+#         ordering = ['-id']
+    
+#     def save_rate(self):
+#         self.save()
+
+#     def _get_total(self):
+#         return (self.design + self.usability + self.content) * 0.33
+
+#     total = property(_get_total)
+
+#     @classmethod
+#     def get_rates(cls, id):
+#         rates = cls.objects.all()
+#         return rates
+        
+class Reviews(models.Model):
+    RATING_CHOICES = ((1, '1'),(2, '2'),(3, '3'),(4, '4'),(5, '5'),(6, '6'),(7, '7'),(8, '8'),(9, '9'),(10, '10'),)
+    
+    user= models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    project = models.ForeignKey(Projects,on_delete=models.CASCADE, related_name='reviews',null=True)
+    design = models.IntegerField(choices=RATING_CHOICES,default=0)
+    usability = models.IntegerField(choices=RATING_CHOICES,default=0)
+    content = models.IntegerField(choices=RATING_CHOICES,default=0)
+    comment = models.CharField(max_length=200,null=True)
+
+    @classmethod
+    def get_reviews(cls):
+        reviews = Reviews.objects.all()
+        return reviews
+      
+
+class Comments(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comments = models.TextField(max_length=400)
+    pro_id = models.IntegerField(default=0)
+

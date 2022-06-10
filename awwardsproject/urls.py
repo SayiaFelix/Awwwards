@@ -21,6 +21,6 @@ urlpatterns = [
     path('', include('awwards.urls')),
     path('tinymce/', include('tinymce.urls')),
 ]
-admin.site.site_header= "Awwwards Lite Administration"
+admin.site.site_header= "Awwwards Administration"
 admin.site.site_title="Awwwards"
-admin.site.index_title="Welcome to Awwwards administration"
+admin.site.index_title="Welcome to Awwards Administration"
