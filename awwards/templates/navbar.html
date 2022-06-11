@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    body {
+      font-family: "Lato", sans-serif;
+      transition: background-color .5s;
+    }
+    
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+    
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+    
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+    
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+    
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+    </style>
+
+<!-- Sidebar -->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+  
+  <div id="main" style="display: flex">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+    <div class="col-4" style="text-align:left; margin-top: 10px">
+        <form class="form-inline mx-auto" role="search" action="" method="get">
+                <div class="form-group">
+                    <input type="text" class="form-control" role="search" placeholder="search project" aria-label="Search" name="title">
+                </div>
+            </form>
+
+    </div>
+    <div class="col-5">
+    <h5 style="text-transform: uppercase; margin-top: 10px;"><strong>Awwwards</strong> </h5> 
+        <p> <a class="nav-link" href="#" title="User">{{user}}</a></p>
+    </div>         
+ 
+    <div class="col-2" style="background:black;" >
+     <h6 class="text-center" style="text-transform: uppercase; margin-top: 10px;text-align:right; color:white; font-size:15px; font-weight:bold;"><a href="">SUBMIT YOUR SITE!</a></h6>
+    </div> 
+  </div>
+  
+
+
+
+{% comment %} 
+<div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+  <a href="/" class="w3-bar-item w3-button w3-border-bottom" >Home</a>
+  {% comment %} <a href="{% url 'add_profile' %}" class="w3-bar-item w3-button w3-border-bottom">Add Profile</a>
+  <a href="{% url 'upload' %}" class="w3-bar-item w3-button w3-border-bottom">Add Projects</a> {% endcomme
+  <a href="/logout" class="w3-bar-item w3-button w3-border-bottom">Log Out</a>
+</div> {% endcomment %}
+
+{% comment %} <!-- Page Content -->
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+  <div>
+  <button class="w3-button w3-white w3-xxlarge" onclick="w3_open()">&#9776;</button>
+  </div> {% endcomment %}
+
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+      document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+      document.body.style.backgroundColor = "white";
+    }
+    </script>
+</body>
+</html>
+ 
