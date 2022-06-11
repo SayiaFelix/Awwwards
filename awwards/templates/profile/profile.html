@@ -4,24 +4,28 @@
 {% load bootstrap4 %}
 <br>
 <br>
-<div class="container top">
+<div class="container">
+    <h3 class=""> <b>{{ profile.user }}</b> Profile Info</h3>
+  <hr>
   <div class="row">
     <div class="col-md-12">
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+          <br>
           {% if profile.profile_photo %}
-          <img src="{{profile.profile_photo.url}}" alt="profile" class="img-fluid-circle" style="border-radius: 50%;height:200px;width: 200px;">
+          <img src="{{profile.profile_photo.url}}" alt="profile" class="img-fluid"  style="border-radius: 50%;height:px;width:; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);">
           {% endif %}
         </div>
-        <div class="col-md-5 text-left">
+        <div class="col-md-5 text-left ml-5">
+          <br><br><br>
           <ul class="list-inline">
             <li class="list-inline-item">
              <h4> <span class=""> <b>{{ profile.user }}</b></span></h4>
             </li>
             <hr>
-          
+            <br>
             {% if profile.user == user %}
-      
             <li class="list-inline-item">
               <a data-toggle="modal" data-target="#edit" style="text-decoration:none;"  href=""><i class="far fa-edit"></i>Edit Profile</a>
             </li>
@@ -39,7 +43,9 @@
               <span class="font-weight-bold">{{profile.user.c_user.all | length}}</span> Projects rated
             </li>
           </ul>
-          <h6 class="">Bio:  {{profile.bio}}</h6>
+          <h6 class=""> <b>Bio:</b>  {{profile.bio}}</h6>
+          <h6 class=""> <b>Contact:</b> <em> {{profile.contact}}</em></h6>
+          <br>
            {% if profile.user == user %}
              <button style="border: solid 1px #333; padding: 1em;" class="btn btn-sm btn-outline-secondary btn-block mb-4 mx-auto" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             <i class="fas fa-upload fa-lg"></i><a style= "text-decoration: none;"href="{% url 'upload_project' %}">upload Project</a>
@@ -50,8 +56,11 @@
       </div>
     </div>
   </div>
+  <br>
   <hr>
     <div class="container">
+         <h4 class="text-center"> <b>Projects</b> </h4>
+      <hr>
       <div class="row">
         {% for project in projects %}
         <div class="col-md-4">
@@ -78,4 +87,5 @@
     </div>
   </div>
 </div>
+<hr>
 {% endblock %}
