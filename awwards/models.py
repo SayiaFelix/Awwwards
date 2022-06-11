@@ -54,7 +54,7 @@ class Projects(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     title = models.CharField(max_length=20)
     project_photo = models.ImageField(upload_to = 'projects/')
-    description = HTMLField(max_length=200, blank=True)
+    description = HTMLField(max_length=300, blank=True)
     location = models.CharField(max_length=50, blank=True)
     link = URLOrRelativeURLField(max_length=200)
     date = models.DateTimeField(auto_now_add=True)
