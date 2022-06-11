@@ -117,8 +117,5 @@ def add_review(request,pk):
 def all_projects(request, pk):
     profile = Profile.objects.get(pk=pk)
     projects = Projects.objects.all().filter(posted_by_id=pk)
-    content = {
-        "profile": profile,
-        'projects': projects,
-    }
-    return render(request, 'profile.html', content)
+
+    return render(request, 'profile/profile.html', {"profile": profile,'projects': projects,} )

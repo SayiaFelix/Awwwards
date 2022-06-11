@@ -16,16 +16,14 @@
         <div class="col-md-5 text-left">
           <ul class="list-inline">
             <li class="list-inline-item">
-              <span class="username">{{ profile.user }}</span>
+             <h4> <span class=""> <b>{{ profile.user }}</b></span></h4>
             </li>
+            <hr>
+          
             {% if profile.user == user %}
-        
+      
             <li class="list-inline-item">
-              <a data-toggle="modal" data-target="#edit" href=""><i class="far fa-edit"></i>Edit Profile</a>
-            </li>
-            {% else %}
-            <li class="list-inline-item">
-              <a href="#" class="btn btn-primary"></a>
+              <a data-toggle="modal" data-target="#edit" style="text-decoration:none;"  href=""><i class="far fa-edit"></i>Edit Profile</a>
             </li>
             {% endif %}
           </ul>
@@ -41,32 +39,31 @@
               <span class="font-weight-bold">{{profile.user.c_user.all | length}}</span> Projects rated
             </li>
           </ul>
-          <p class="font3">{{profile.bio}}</p>
-          {% comment %} {% if profile.user == user %}
-          <p><a href="{% url 'upload' %}">Add Image</a></p>
-          {% endif %} {% endcomment %}
+          <h6 class="">Bio:  {{profile.bio}}</h6>
+           {% if profile.user == user %}
+             <button style="border: solid 1px #333; padding: 1em;" class="btn btn-sm btn-outline-secondary btn-block mb-4 mx-auto" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fas fa-upload fa-lg"></i><a style= "text-decoration: none;"href="{% url 'upload_project' %}">upload Project</a>
+                          </button>
+      
+          {% endif %} 
         </div>
       </div>
     </div>
   </div>
   <hr>
-  <div class="container">
-    <div class="row">
-      {% for project in projects %}
-      <div class="card-columns">
-
-    <div class="card border-secondary">
-      <img class="card-img-top" class="img-responsive" src="{{project.project_image.url}}" size="">
-    </div>
-      {% empty %}
-      <div class="col-md-12">
-        <h2>Profile has no projects</h2>
+    <div class="container">
+      <div class="row">
+        {% for project in projects %}
+        <div class="col-md-4">
+          <img src="{{project.project_photo.url}}" alt="Image" style="height:500px; border-radius:15px; box-shadow: 2px 2px 5px rgba(3,3,3,0.5);"class="img-fluid"><br>
+        </div>      
+        {% empty %}
+        <div class="col-md-12">
+          <h2>  Profile has no Projects </h2>
+        </div> 
+          {% endfor %}
       </div>
-      {% endfor %}
     </div>
-
-  </div>
-
 </div>
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
