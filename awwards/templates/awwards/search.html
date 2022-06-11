@@ -2,9 +2,10 @@
 {% block content %}
 {{ block.super}}
 {% load bootstrap4 %}
-<hr>
+
 <div class="container">
-    <div class="row">
+  
+    <div class="row">  <hr>
         {% if searched_project %}
         <h2>{{searched_project | length}} projects found.</h2>
         {% else %}
@@ -14,22 +15,18 @@
     <div class="row">
          {% if searched_project %}
             {% for project in searched_project %}
-
-            <div class="card border-secondary">
+            <div class="shadow p-3 mb-4 bg-body rounded-top border-top border-2 border-secondary" style="border-radius:10px;">
               <div class="card-header">
-                <h2 class="card-title text-center"><a href="{{ project.link }}" target="_blank">{{project.title}}</a></h2>
-              </div> <br>
-              <img class="card-img-top" class="img-responsive" src="{{project.project_photo.url}}" size="100px200">
+                <h2 class="card-title text-center"><a style="text-decoration:none;" href="{{ project.link }}" target="_blank">{{project.title}}</a></h2>
+
+              </div>
+              <hr> <br>
+              <img class="card-img-top" class="img-responsive" src="{{project.project_photo.url}}" size="100px200"style="border-radius:15px; box-shadow: 2px 2px 5px rgba(5,5,10,0.5);">
             </div>
             <div class="card-body">
             {% endfor %}
         {% endif %}
     </div>
 </div>
-<br>
-<hr>
-
-   <div class="row">
-     
-    </div>
+<hr>  
 {% endblock %}
