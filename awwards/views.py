@@ -242,7 +242,7 @@ def register_user(request):
              login(request,user)
 
              messages.success(request,f'Hello {username}, Your account was Successfully Created.You will receive our email shortly.Thank You!!!')
-             return redirect('add_profile')
+             return redirect('homepage')
     else:
          form = UserRegisterForm()
     return render (request,'registration/register.html',{'form':form})

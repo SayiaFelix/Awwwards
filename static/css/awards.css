@@ -1,3 +1,4 @@
-h1 {
-    color: rgb(21, 255, 0);
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Inspiration&family=Joan&family=M+PLUS+1p:wght@300&family=Open+Sans&family=PT+Sans:ital@1&family=Roboto:wght@300&family=Source+Sans+Pro:wght@300;600&display=swap');
+* {
+    font-family: 'Joan', serif;
 }
