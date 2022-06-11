@@ -20,7 +20,6 @@ class Profile(models.Model):
         post_save.connect(create_user_profile, sender=User)
 
   
-
     @classmethod
     def get_profile(cls):
         profile = Profile.objects.all()
@@ -102,32 +101,6 @@ class Projects(models.Model):
         return self.title
 
 
-# class Reviews(models.Model):
-#     design = models.IntegerField(default=0)
-#     usability = models.IntegerField(default=0)
-#     content = models.IntegerField(default=0)
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     project = models.IntegerField(default=0)
-
-#     class Meta:
-#         unique_together = (('user', 'design', 'usability', 'content', 'project'))
-#         index_together = (('user', 'design', 'usability', 'content', 'project'))
-
-#         ordering = ['-id']
-    
-#     def save_rate(self):
-#         self.save()
-
-#     def _get_total(self):
-#         return (self.design + self.usability + self.content) * 0.33
-
-#     total = property(_get_total)
-
-#     @classmethod
-#     def get_rates(cls, id):
-#         rates = cls.objects.all()
-#         return rates
-        
 class Reviews(models.Model):
     RATING_CHOICES = ((1, '1'),(2, '2'),(3, '3'),(4, '4'),(5, '5'),(6, '6'),(7, '7'),(8, '8'),(9, '9'),(10, '10'),)
     
