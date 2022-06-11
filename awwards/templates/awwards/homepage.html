@@ -2,7 +2,7 @@
 {% block content %}
 {{ block.super}}
 {% load bootstrap4 %}
-
+{% load static %}
 <div class="container">
     <br>
     <br>
@@ -51,7 +51,7 @@
                 <form action="{%url 'review' pk=project.id%}" method="post" enctype="multipart/form-data" id="sema">
                   {%csrf_token%}
                   <table>
-                    {{ form.as_table }}
+                    {{ form }}
                   </table>
                   <button type="submit">Vote</button>
                 </form> 
@@ -68,9 +68,9 @@
 
 {% block scripts %} {{block.super}}
   <script type="text/javascript" src="{ % static 'js/script.js'% }"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>{% bootstrap_javascript %}
 
-{% bootstrap_javascript %}
+  <script type="text/javascript" src="{%static 'js/script.js'%}"></script>
 
 
 {% endblock %}

@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="{% static 'css/awards.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cookie&family=Inspiration&family=Joan&family=M+PLUS+1p:wght@300&family=Open+Sans&family=PT+Sans:ital@1&family=Roboto:wght@300&family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Inspiration&family=Joan&family=M+PLUS+1p:wght@300&family=Open+Sans&family=PT+Sans:ital@1&family=Roboto:wght@300&family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
      <link rel="icon" href="{% static 'favicon/favicon.png'%}" type="img/jpg"> 
     <script src="https://kit.fontawesome.com/0aff1cb243.js" crossorigin="anonymous"></script>
@@ -116,12 +116,12 @@
 <div id="mySidenav" class="sidenav ">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <h3> <a href="{% url 'homepage' %}"  style="text-decoration: none; font-weight: bold; font-size:18px;"class="">Home</a></h3>
-    <h4> <a class="nav-link" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; font-size:18px;" title="User"><i class="fa-solid fa-user fa-lg"></i>{{user}}</a></h4>
-    <h4> <a href="{% url 'upload_project' %}" class="btn btn-lg btn-outline-primary"><i class="fas fa-upload fa-lg" style="margin-right:px;"></i>Projects</a></h4>
+    <h4> <a class="" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; font-size:18px;" title="User"><i class="fa-solid fa-user fa-lg"></i>{{user}}</a></h4>
+    <h4> <a href="{% url 'upload_project' %}" class=""><i class="fas fa-upload fa-lg" style="margin-right:px;"></i>Projects</a></h4>
     <h4><a href="{% url 'add_profile' %}" class=""><i class="fa-solid fa-address-card fa-lg"></i>Profile</a></h4>
     {% comment %} <a href="{% url 'review' review.id %} ">Services</a> {% endcomment %}
-    <h4> <a href="/register" class="w3-bar-item w3-button w3-border-bottom"> Register</a><h4>
-    <h4> <a href="/logout" class="w3-bar-item w3-button w3-border-bottom">Log Out</a><h4>
+    <h4> <a href="/register" class=""> Register</a><h4>
+    <h4> <a href="/logout" class="">Log Out</a><h4>
 
   </div>
   
@@ -158,7 +158,8 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     {% bootstrap_javascript %}
-      {% comment %} <script src="{% static 'js/script.js' %}"></script> {% endcomment %}
+ 
+      <script src="{% static 'js/script.js' %}"></script>
       {% endblock %}
 
 
