@@ -70,7 +70,7 @@
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 
     <div class="col-3" style="text-align:left; margin-top: 10px">
-        <form class="form-inline mx-auto" role="search" action="" method="get">
+        <form class="form-inline mx-auto" role="search" action="{% url 'search' %}" method="get">
                 <div class="form-group">
                     <input type="text" class="form-control" role="search" placeholder="search project" aria-label="Search" name="title">
                 </div>
