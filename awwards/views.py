@@ -188,7 +188,7 @@ def add_review(request,pk):
             content = form.cleaned_data['content']
             review = form.save(commit=False)
             review.project = project
-            review.juror = current_user
+            review.user = current_user
             review.design = design
             review.usability = usability
             review.content = content
