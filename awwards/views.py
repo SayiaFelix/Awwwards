@@ -108,7 +108,7 @@ def add_review(request,pk):
             review.usability = usability
             review.content = content
             review.save()
-            return redirect('home')
+            return redirect('homepage')
     else:
         form = ReviewForm()
         return render(request,'awwards/review.html',{"user":current_user,"form":form})

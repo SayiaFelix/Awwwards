@@ -20,5 +20,7 @@ class ReviewForm(forms.ModelForm):
         design= forms.IntegerField(label="Design Rates")
         usability = forms.IntegerField(label="Usability Rates")
         content = forms.IntegerField(label="Content Rates")
+        location = forms.CharField(label="Location")
+                
         widget=forms.Select(choices=INTEGER_CHOICES)
         exclude =['project','user']

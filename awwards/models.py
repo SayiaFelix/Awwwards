@@ -110,7 +110,8 @@ class Reviews(models.Model):
     usability = models.IntegerField(choices=RATING_CHOICES,default=0)
     content = models.IntegerField(choices=RATING_CHOICES,default=0)
     comment = models.CharField(max_length=200,null=True)
-
+    location = models.CharField(max_length=50, blank=True)
+    
     @classmethod
     def get_reviews(cls):
         reviews = Reviews.objects.all()

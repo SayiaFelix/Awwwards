@@ -37,25 +37,27 @@
               </div>
               <hr>
               <div class="review-section">
-                {% for review in reviews %}
+              
+              {% for review in reviews %}
                 {% if project.id == review.project.id %}
     
-                <p><strong>{{review.juror}}</strong> {{review.comment}} [usability: {{review.usability}}, content: {{review.content}} , design: {{review.design}}]</p>
+               <h5><strong>{{review.user}}  </strong> </h5>
+               <p><b> Comment:</b> {{review.comment}}</p> <p><b>Rates:</b> usability: {{review.usability}}, content: {{review.content}} , design: {{review.design}}</p>
                 <p>{{ project.average_score | floatformat }}</p>
                 {% endif %}
     
                 {%endfor%}
-
-                {% comment %} <hr>
+              <hr>
                 <form action="{%url 'review' pk=project.id%}" method="post" enctype="multipart/form-data" id="sema">
                   {%csrf_token%}
                   <table>
                     {{ form.as_table }}
                   </table>
+ 
                   <button type="submit">Vote</button>
     
     
-                </form> {% endcomment %}
+                </form> 
     
                 {% block scripts %}
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -70,5 +72,16 @@
       </div>
     </div>
 </div>
+{% comment %} <div>
 
+
+      {% for review in reviews %}
+                {% if project.id == review.project.id %}
+    
+                <p><strong>{{review.juror}}</strong> {{review.comment}} [usability: {{review.usability}}, content: {{review.content}} , design: {{review.design}}]</p>
+                <p>{{ project.average_score | floatformat }}</p>
+                {% endif %}
+    
+                {%endfor%}
+</div> {% endcomment %}
 {% endblock %}
