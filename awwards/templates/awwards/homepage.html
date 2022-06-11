@@ -53,17 +53,9 @@
                   <table>
                     {{ form.as_table }}
                   </table>
- 
                   <button type="submit">Vote</button>
-    
-    
                 </form> 
     
-                {% block scripts %}
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-                {% bootstrap_javascript %}
-                {% endblock %}
               </div>
             </div>
           </div>
@@ -72,16 +64,13 @@
       </div>
     </div>
 </div>
-{% comment %} <div>
+{% endblock %}
+
+{% block scripts %} {{block.super}}
+  <script type="text/javascript" src="{ % static 'js/script.js'% }"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+{% bootstrap_javascript %}
 
 
-      {% for review in reviews %}
-                {% if project.id == review.project.id %}
-    
-                <p><strong>{{review.juror}}</strong> {{review.comment}} [usability: {{review.usability}}, content: {{review.content}} , design: {{review.design}}]</p>
-                <p>{{ project.average_score | floatformat }}</p>
-                {% endif %}
-    
-                {%endfor%}
-</div> {% endcomment %}
 {% endblock %}

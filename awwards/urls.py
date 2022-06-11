@@ -12,6 +12,10 @@ urlpatterns=[
     url('upload/', views.update_project, name='upload_project'),
     url('review/(?P<pk>\d+)',views.add_review,name='review'),
     url('all/(?P<pk>\d+)', views.all_projects, name='all'),
+    url(r'api/profile/', views.ProfileList.as_view()),
+    url(r'api/project/', views.ProjectList.as_view()),
+    # url(r'api/profile/profile-id/(?P<pk>[0-9]+)/$',views.ProfileDescription.as_view()),
+    # url(r'api/project/project-id/(?P<pk>[0-9]+)/$',views.ProjectDescription.as_view())
    
 ]
 
