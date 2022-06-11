@@ -71,7 +71,7 @@ class ProfileList(APIView):
 
     def post(self, request, format=None):
         serializers = ProfileSerializer(data=request.data)
-        # permission_classes = (IsAdminOrReadOnly,)
+        permission_classes = (IsAdminOrReadOnly,)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
@@ -143,7 +143,7 @@ class ProjectList(APIView):
 
     def post(self, request, format=None):
         serializers = ProjectSerializer(data=request.data)
-        # permission_classes = (IsAdminOrReadOnly,)
+        permission_classes = (IsAdminOrReadOnly,)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
