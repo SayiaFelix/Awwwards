@@ -112,9 +112,10 @@
 <!-- Sidebar -->
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <h4> <a class="nav-link" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold" font-size="18px" title="User"><i class="fa-solid fa-user fa-lg"></i>{{user}}</a></h4>
-    <h4> <a href="{% url 'upload_project' %}" class="w3-bar-item w3-button w3-border-bottom"><i class="fas fa-upload fa-lg" style="margin-right:px;color:bl;"></i>Add Projects</a></h4>
-    <a href="#">About</a>
+    <h3> <a href="{% url 'homepage' %}"  style="text-decoration: none; font-weight: bold; font-size:18px;"class="">Home</a></h3>
+    <h4> <a class="nav-link" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; font-size:18px;" title="User"><i class="fa-solid fa-user fa-lg"></i>{{user}}</a></h4>
+    <h4> <a href="{% url 'upload_project' %}" class=""><i class="fas fa-upload fa-lg" style="margin-right:px;"></i>Projects</a></h4>
+    <h4><a href="{% url 'add_profile' %}" class=""><i class="fa-solid fa-address-card fa-lg"></i>Profile</a></h4>
     <a href="#">Services</a>
     <a href="#">Clients</a>
     <a href="#">Contact</a>
@@ -122,7 +123,7 @@
   
   <div id="main" >
     <div style="display: flex">
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
         <div class="col-3" style="text-align:left;">
             <form class="form-inline mx-auto" role="search" action="{% url 'search' %}" method="get">
@@ -139,7 +140,7 @@
         </div>         
            <h4> <a class="nav-link" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold" font-size="18px" title="User"><i class="fa-solid fa-user fa-lg"></i>{{user}}</a></h4>
             <div class="col-2" style="background:black;" >
-            <h6 class="text-center" style="text-transform: uppercase; margin-top: 10px;text-align:right; color:white; font-size:15px; font-weight:bold;"><a href="">SUBMIT YOUR SITE!</a></h6>
+            <h6 class="text-center" style="text-decoration: none; margin-top: 10px;text-align:right; color:white; font-size:15px; font-weight:bold;"><a text-decoration: none;  href="{% url 'upload_project' %}"">SUBMIT YOUR SITE!</a></h6>
             </div> 
             
     </div>
@@ -160,7 +161,7 @@
 <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
   <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
   <a href="/" class="w3-bar-item w3-button w3-border-bottom" >Home</a>
-  {% comment %} <a href="{% url 'add_profile' %}" class="w3-bar-item w3-button w3-border-bottom">Add Profile</a>
+  {% comment %} 
   {% endcomme
   <a href="/logout" class="w3-bar-item w3-button w3-border-bottom">Log Out</a>
 </div> {% endcomment %}
