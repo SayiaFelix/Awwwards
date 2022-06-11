@@ -62,6 +62,22 @@ def add_user_profile(request):
         form = NewProfileForm()
     return render(request, 'profile/new_user_profile.html', {"form": form})
 
+class ProfileList(APIView):
+
+    def get(self, request, format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
+        return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers = ProfileSerializer(data=request.data)
+        # permission_classes = (IsAdminOrReadOnly,)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 def search(request):
 
     if 'title' in request.GET and request.GET["title"]:
@@ -91,6 +107,22 @@ def update_project(request):
             else:
                 form = UploadForm()
             return render(request,'awwards/upload_project.html',{"user":current_user,"form":form})
+            
+class ProjectList(APIView):
+
+    def get(self, request, format=None):
+        all_projects = Projects.objects.all()
+        serializers = ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers = ProjectSerializer(data=request.data)
+        # permission_classes = (IsAdminOrReadOnly,)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 def add_review(request,pk):
     project = get_object_or_404(Projects, pk=pk)
@@ -121,20 +153,7 @@ def all_projects(request, pk):
     return render(request, 'profile/profile.html', {"profile": profile,'projects': projects,} )
 
 
-class ProfileList(APIView):
 
-    def get(self, request, format=None):
-        all_profiles = Profile.objects.all()
-        serializers = ProfileSerializer(all_profiles, many=True)
-        return Response(serializers.data)
-
-    # def post(self, request, format=None):
-    #     serializers = ProfileSerializer(data=request.data)
-    #     permission_classes = (IsAdminOrReadOnly,)
-    #     if serializers.is_valid():
-    #         serializers.save()
-    #         return Response(serializers.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # class ProfileDescription(APIView):
 #     permission_classes = (IsAdminOrReadOnly,)
@@ -163,20 +182,8 @@ class ProfileList(APIView):
 #         profile.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class ProjectList(APIView):
 
-    def get(self, request, format=None):
-        all_projects = Projects.objects.all()
-        serializers = ProjectSerializer(all_projects, many=True)
-        return Response(serializers.data)
-
-#     def post(self, request, format=None):
-#         serializers = ProjectSerializer(data=request.data)
-#         permission_classes = (IsAdminOrReadOnly,)
-#         if serializers.is_valid():
-#             serializers.save()
-#             return Response(serializers.data, status=status.HTTP_201_CREATED)
-#         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+ 
 
 
 
