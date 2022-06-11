@@ -28,12 +28,8 @@
     {% include "footer.html" %} 
     {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% bootstrap_javascript %} {% endblock %}
-{% block scripts %}
 
-
-  <script src="{% static 'js/script.js' %}"></script>
-  {% bootstrap_javascript %}
+    {% bootstrap_javascript %}  <script src="{% static 'js/script.js' %}"></script>{% endblock %}
 </body>
 
 </html>
