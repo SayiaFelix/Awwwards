@@ -46,4 +46,4 @@ def user_profile(request,profile_id):
     profile = Profile.objects.get(pk = profile_id)
     projects = Projects.objects.filter(profile_id=profile).all()
 
-    return render(request,"awwards/profile.html",{"profile":profile,"projects":projects})
+    return render(request,"profile/profile.html",{"profile":profile,"projects":projects})
