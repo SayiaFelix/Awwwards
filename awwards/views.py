@@ -1,14 +1,18 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from rest_framework.response import Response
+from .permissions import IsAdminOrReadOnly
+from rest_framework.views import APIView
+from .email import send_welcome_email
+from django.http import JsonResponse
+from django.contrib import messages
+from rest_framework import status
+from django.urls import reverse
+from .serializer import *
 from .models import *
 from .forms import *
-from django.http import JsonResponse
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from .serializer import *
-from rest_framework import status
-from .permissions import IsAdminOrReadOnly
 
 # Create your views here.
 def homepage(request):
@@ -206,6 +210,47 @@ def all_projects(request, pk):
     return render(request, 'profile/profile.html', {"profile": profile,'projects': projects,} )
 
 
+
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+         login(request, user)
+         return redirect('homepage')
+        
+        else:
+            messages.success(request,('Invalid information'))
+            return redirect('login')
+         
+    else:
+
+     return render(request,'registration/login.html')
+
+def register_user(request):
+    if request.method == 'POST':
+         form = UserRegisterForm(request.POST)
+         if form.is_valid():
+             form.save()
+             username = form.cleaned_data['username']
+             password = form.cleaned_data['password1']
+             email = form.cleaned_data['email']
+             send_welcome_email(username,email) 
+
+             user = authenticate(username=username, password=password)
+             login(request,user)
+
+             messages.success(request,f'Hello {username}, Your account was Successfully Created.You will receive our email shortly.Thank You!!!')
+             return redirect('add_profile')
+    else:
+         form = UserRegisterForm()
+    return render (request,'registration/register.html',{'form':form})
+
+@login_required
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("login"))
 
 
 
