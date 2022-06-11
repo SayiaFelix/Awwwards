@@ -39,3 +39,11 @@ def homepage(request):
         form = ReviewForm()
 
     return render(request,"awwards/homepage.html",{"projects":projects, "reviews":reviews,"form": form,"profile":profile})
+
+
+def user_profile(request,profile_id):
+
+    profile = Profile.objects.get(pk = profile_id)
+    projects = Projects.objects.filter(profile_id=profile).all()
+
+    return render(request,"awwards/profile.html",{"profile":profile,"projects":projects})
