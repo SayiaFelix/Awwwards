@@ -1,7 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
-
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -13,11 +9,10 @@ from rest_framework.views import APIView
 from .serializer import *
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
-# Create your views here.
 
-# @login_required(login_url='/accounts/login/')
+# Create your views here.
 def homepage(request):
-    projects = Project.get_projects()
+    projects = Projects.get_projects()
     reviews = Reviews.get_reviews()
     profile = Profile.get_profile()
 
@@ -28,14 +23,17 @@ def homepage(request):
             design = form.cleaned_data['design']
             usability = form.cleaned_data['usability']
             content = form.cleaned_data['content']
+
             review = form.save(commit=False)
-            review.project = project
-            review.juror = current_user
+
+            review.project = projects
+            review.name = current_user
             review.design = design
             review.usability = usability
             review.content = content
             review.save()
-        return redirect('home')
+
+        return redirect('homepage')
 
     else:
         form = ReviewForm()
