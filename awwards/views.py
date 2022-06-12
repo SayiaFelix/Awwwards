@@ -44,7 +44,7 @@ def homepage(request):
 
     return render(request,"awwards/homepage.html",{"projects":projects, "reviews":reviews,"form": form,"profile":profile})
 
-
+@login_required
 def user_profile(request,profile_id):
 
     profile = Profile.objects.get(pk = profile_id)
@@ -52,6 +52,7 @@ def user_profile(request,profile_id):
 
     return render(request,"profile/profile.html",{"profile":profile,"projects":projects})
 
+@login_required
 def add_user_profile(request):
     current_user = request.user
     if request.method == 'POST':
@@ -65,6 +66,7 @@ def add_user_profile(request):
     else:
         form = NewProfileForm()
     return render(request, 'profile/new_user_profile.html', {"form": form})
+
 
 class ProfileList(APIView):
 
@@ -80,6 +82,7 @@ class ProfileList(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ProfileDescription(APIView):
     permission_classes = (IsAdminOrReadOnly,)
@@ -108,6 +111,7 @@ class ProfileDescription(APIView):
         profile.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@login_required
 def search(request):
 
     if 'title' in request.GET and request.GET["title"]:
@@ -121,6 +125,7 @@ def search(request):
         message = "You haven't searched for any project"
         return render(request,'awwards/search.html',{"message":message})
 
+@login_required
 def update_project(request):
     current_user = request.user
     profiles = Profile.get_profile()
@@ -137,7 +142,8 @@ def update_project(request):
             else:
                 form = UploadForm()
             return render(request,'awwards/upload_project.html',{"user":current_user,"form":form})
-            
+
+          
 class ProjectList(APIView):
 
     def get(self, request, format=None):
@@ -181,6 +187,7 @@ class ProjectDescription(APIView):
         project.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@login_required
 def add_review(request,pk):
     project = get_object_or_404(Projects, pk=pk)
     current_user = request.user
@@ -202,7 +209,7 @@ def add_review(request,pk):
         form = ReviewForm()
         return render(request,'awwards/review.html',{"user":current_user,"form":form})
 
-
+@login_required
 def all_projects(request, pk):
     profile = Profile.objects.get(pk=pk)
     projects = Projects.objects.all().filter(name_id=pk)
@@ -251,7 +258,7 @@ def register_user(request):
              login(request,user)
 
              messages.success(request,f'Hello {username}, Your account was Successfully Created.You will receive our email shortly.Thank You!!!')
-             return redirect('homepage')
+             return redirect('add_profile')
     else:
          form = UserRegisterForm()
     return render (request,'registration/register.html',{'form':form})

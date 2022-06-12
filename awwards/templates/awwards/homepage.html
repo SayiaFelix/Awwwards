@@ -7,13 +7,21 @@
 <div class="container">
     <h1 class="media-heading text-center" style=""><b>Awwwards. Hub</b></h1>
     <hr>
+                 {%if messages%}
+                    {%for message in messages%}
+                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                              {{message}}
+                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                     {%endfor%}
+                  {%endif%}   
     <br> 
     <div class="container" style="">
       <div class="row">
           {% for project in projects %}
           <div class="col-1"></div>
           <div class="col-8">
-              <div class="card mr-0" style="max-width:74rem; margin-top:5px;background-color:rgba(3,3,3,0.5);">
+              <div class="card mr-0" style="max-width:70rem; margin-top:5px;background-color:rgba(4,4,4,0.5);">
                    <img src="{{project.project_photo.url}}" data-target="#extraModal{{project.id}}" data-toggle="modal"class="card-img-top">
                      <div class="card-body">
                        <div class="media">
@@ -27,9 +35,9 @@
                                   By: <b>{{ project.profile.user }}</b>  from {{project.location}}</h6>
                               <hr class="text-light">
                                 <button class="btn  btn-outline-light one d-flex justify-content-end ml-1 fs-4" style="float:right; padding:10px; margin:5px;color:black;border-radius:27px;">Votes: {{ project.reviews.count| floatformat  }}</button>
-                                <button class="btn three d-flex justify-content-end fs-4" style="float:right; padding:10px; margin:5px;color:#ECD06F;border-radius:25px;">usability: {{ project.usability_rating| floatformat  }}</button>
-                                <button class="btn two d-flex justify-content-end fs-4" style="float:right; padding:10px; margin:5px;color:#DF6C4F;border-radius:25px;">design: {{ project.design_rating| floatformat  }}</button>
-                                <button class="btn four d-flex justify-content-end ml-1 fs-4" style="float:right; padding:10px; margin:5px;color:#2699AA;border-radius:25px;">content: {{ project.content_rating| floatformat  }}</button>
+                                <button class="btn three d-flex justify-content-end fs-5" style="float:right; padding:10px; margin:5px;color:#ECD06F;border-radius:25px;">usability: {{ project.usability_rating| floatformat  }}</button>
+                                <button class="btn two d-flex justify-content-end fs-5" style="float:right; padding:10px; margin:5px;color:#DF6C4F;border-radius:25px;">design: {{ project.design_rating| floatformat  }}</button>
+                                <button class="btn four d-flex justify-content-end ml-1 fs-5" style="float:right; padding:10px; margin:5px;color:#2699AA;border-radius:25px;">content: {{ project.content_rating| floatformat  }}</button>
                                 <a href="/profile/{{project.profile.id}}" title="profile">
                                   <button type="button" class="btn btn-lg btn-outline-light ml-1" style="border-radius:30px;"><a class="fs-4"href="{{ project.link }}" style="text-decoration:none;padding:10px; margin-top:5px; color:black;" target="_blank">visit site</a></button>
                                 </a>
@@ -73,7 +81,7 @@
      
     </div> 
      <div class="col-5"style="border-bottom: 1px solid #111;border-radius:10px; box-shadow: 3px 3px 3px rgba(3,3,3,0.5);">
-      <br>
+      <br><br>
             <h4 class="media-heading" style="">Project Title: <b>{{ project.title }}</b></h4>
             <br>
           
@@ -84,6 +92,7 @@
                  
                   <p><b>Rates:</b> usability: <b>{{review.usability}}</b>, content: <b>{{review.content}} </b>, design: <b>{{review.design}}</b></p>
                  <p>{{ project.average_score | floatformat }}</p>
+                 <hr>
               {% endif %}
             {%endfor%} 
      </div> 
