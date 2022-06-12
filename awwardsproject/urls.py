@@ -6,7 +6,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('awwards.urls')),
     path('register/',views.register_user,name='register'),
-    path('ajax/register/',views.user_register,name='register'),
+    # path('ajax/register/',views.user_register,name='register'),
     path('accounts/login/',views.login_user,name='login'),
     # path('ajax/accounts/login/',views.user_login,name='login'),
     path('logout/', views.logout_user, name='logout'),

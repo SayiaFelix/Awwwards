@@ -256,17 +256,18 @@ def register_user(request):
          form = UserRegisterForm()
     return render (request,'registration/register.html',{'form':form})
 
-def user_register(request):
-            username = request.POST.get('username')
-            email = request.POST.get('email')
-            password1 = request.POST.get('password1')
-            password2 = request.POST.get('password2')
+# def user_register(request):
+#      if request.method == 'POST':
+#             username = request.POST.get('username')
+#             email = request.POST.get('email')
+#             password1 = request.POST.get('password1')
+#             password2 = request.POST.get('password2')
            
-            send_welcome_email(username,email) 
+#             send_welcome_email(username,email) 
 
         
-            data = {'success': 'You have register successfully'}
-            return JsonResponse(data)
+#             data = {'success': 'You have register successfully'}
+#             return JsonResponse(data)
 
  
 @login_required

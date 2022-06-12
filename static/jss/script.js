@@ -5,7 +5,6 @@ $(document).ready(function() {
 
                 $.ajax({
                         'url': '/ajax/register/',
-                        'url': '/ajax/accounts/login',
                         'type': 'POST',
                         'data': form.serialize(),
                         'dataType': 'json',
@@ -13,10 +12,10 @@ $(document).ready(function() {
                             alert(data['success'])
                         },
                     }) // END of Ajax method
-                $('#username').val('')
-                $("#email").val('')
-                $("#password1").val('')
-                $("#password2").val('')
+                $('#id_username').val('')
+                $("#id_email").val('')
+                $("#id_password1").val('')
+                $("#id_password2").val('')
             }) // End of submit event
 
     }) // End of document ready function
