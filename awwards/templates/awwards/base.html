@@ -22,7 +22,7 @@
      {% endblock %}
 </head>
 
-<body style="background-color:#F4F7F6"> 
+<body style="background-color:rgba(244,247,246,.5)"> 
     <style>
     body {
       font-family: "Lato", sans-serif;
@@ -36,7 +36,7 @@
       z-index: 1;
       top: 0;
       left: 0;
-      background-color: #111;
+      background-color: rgba(244,247,246,.5);
       overflow-x: hidden;
       transition: 0.5s;
       padding-top: 50px;
@@ -46,7 +46,7 @@
       padding: 8px 8px 8px 32px;
       text-decoration: none;
       font-size: 20px;
-      color: #f;
+      color: #111;
       display: block;
       transition: 0.3s;
     }
@@ -114,18 +114,25 @@
 <!-- Sidebar -->
 <div id="mySidenav" class="sidenav ">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <hr>
     <h3> <a href="{% url 'homepage' %}"  style="text-decoration: none; font-weight: bold; font-size:18px;"class="">Home</a></h3>
+    <hr>
     <h4> <a class="" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; font-size:19px;" title="User"><i class="fa-solid fa-user fa-lg mr-2"></i>{{user}}</a></h4>
+    <hr>
     <h4> <a href="{% url 'upload_project' %}" class=""><i class="fas fa-upload fa-lg mr-2" style="margin-right:px;"></i>Projects</a></h4>
+    <hr>
     <h4><a href="{% url 'add_profile' %}" class=""><i class="fa-solid fa-address-card fa-lg mr-2"></i>Profile</a></h4>
+    <hr>
     <h4> <a href="/register" class=""> Register</a><h4>
+    <hr>
     <h4> <a href="/logout" class="">Log Out</a><h4>
+    <hr>
 
   </div>
   
   <div id="main" >
     <div style="display: flex">
-            <span style="font-size:25px;cursor:pointer; color:black;margin-top:10px;" onclick="openNav()">&#9776; Menu</span>
+            <span style="font-size:25px;cursor:pointer; color:black;margin-top:10px;padding-right:10px; border-right:2px solid black;" onclick="openNav()">&#9776; Menu</span>
             <div class="col-4" style="text-align:left;">
                 <form class="form-inline mx-auto" role="search" action="{% url 'search' %}" method="get">
                         <div class="form-group">
