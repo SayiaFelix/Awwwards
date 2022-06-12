@@ -1,6 +1,6 @@
 # Awwwards
 
-![AWARDS](/static/image/award.png)
+![Awwwards](/static/image/award.png)
 
 ## Author: [Sayia Felix](https://github.com/SayiaFelix)
 
