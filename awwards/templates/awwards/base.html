@@ -52,7 +52,10 @@
     }
     
     .sidenav a:hover {
-      color: #f1f1f1;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 25px;
+      background-color: rgba(3,3,3,.5);
     }
     
     .sidenav .closebtn {
@@ -115,9 +118,9 @@
 <div id="mySidenav" class="sidenav ">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <hr>
-    <h3> <a href="{% url 'homepage' %}"  style="text-decoration: none; font-weight: bold; font-size:18px;"class="">Home</a></h3>
+    <h3> <a href="{% url 'homepage' %}"  style="text-decoration: none; font-weight: bold; font-size:17px;"class="">Home</a></h3>
     <hr>
-    <h4> <a class="" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; font-size:19px;" title="User"><i class="fa-solid fa-user fa-lg mr-2"></i>{{user}}</a></h4>
+    <h4> <a class="" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; font-size:17px;" title="User"><i class="fa-solid fa-user fa-lg mr-2"></i>{{user}}</a></h4>
     <hr>
     <h4> <a href="{% url 'upload_project' %}" class=""><i class="fas fa-upload fa-lg mr-2" style="margin-right:px;"></i>Projects</a></h4>
     <hr>
@@ -127,7 +130,6 @@
     <hr>
     <h4> <a href="/logout" class="">Log Out</a><h4>
     <hr>
-
   </div>
   
   <div id="main" >
