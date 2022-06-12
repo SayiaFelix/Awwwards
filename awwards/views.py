@@ -113,7 +113,6 @@ class ProfileDescription(APIView):
 
 @login_required
 def search(request):
-
     if 'title' in request.GET and request.GET["title"]:
         search_term = request.GET.get("title")
         searched_project = Projects.search_by_projects(search_term)
@@ -197,12 +196,14 @@ def add_review(request,pk):
             design = form.cleaned_data['design']
             usability = form.cleaned_data['usability']
             content = form.cleaned_data['content']
+            creativity = form.cleaned_data['creativity']
             review = form.save(commit=False)
             review.project = project
             review.user = current_user
             review.design = design
             review.usability = usability
             review.content = content
+            review.creativity = creativity
             review.save()
             return redirect('homepage')
     else:
@@ -215,8 +216,6 @@ def all_projects(request, pk):
     projects = Projects.objects.all().filter(name_id=pk)
 
     return render(request, 'profile/profile.html', {"profile": profile,'projects': projects,} )
-
-
 
 def login_user(request):
     if request.method == 'POST':

@@ -94,9 +94,11 @@ class Projects(models.Model):
         all_content =list( map(lambda x: x.content, self.reviews.all()))
         return np.mean(all_content)
 
+    def creativity_rating(self):
+        all_creativity =list( map(lambda x: x.creativity, self.reviews.all()))
+        return np.mean(all_creativity)
+
     
-
-
     def __str__(self):
         return self.title
 
@@ -109,6 +111,7 @@ class Reviews(models.Model):
     design = models.IntegerField(choices=RATING_CHOICES,default=0)
     usability = models.IntegerField(choices=RATING_CHOICES,default=0)
     content = models.IntegerField(choices=RATING_CHOICES,default=0)
+    creativity = models.IntegerField(choices=RATING_CHOICES,default=0)
     comment = models.CharField(max_length=200,null=True)
     location = models.CharField(max_length=50, blank=True)
     

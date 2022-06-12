@@ -5,7 +5,7 @@
 ## Author: [Sayia Felix](https://github.com/SayiaFelix)
 
 ## Description
-In this application user/developer is able to post/upload his project and also rates other people projects base on userbility ,content and design.
+In this application user/developer is able to post/upload his project and also rates other people projects depending on the userbility ,content,creativity and design.
 
 
 ## User Stories

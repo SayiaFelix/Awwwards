@@ -62,7 +62,7 @@ class ReviewsTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(id = 1, username='cherry')
 
-        self.review= Reviews.objects.create(user= self.user, design=10, usability=10,content=10,location="Nairobi",comment="awesome work" )
+        self.review= Reviews.objects.create(user= self.user, design=10, usability=10,content=10,creativity=10,location="Nairobi",comment="awesome work" )
 
     def test_instance(self):
         self.assertTrue(isinstance(self.review, Reviews))

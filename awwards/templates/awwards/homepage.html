@@ -19,8 +19,8 @@
     <div class="container" style="">
       <div class="row">
           {% for project in projects %}
-          <div class="col-1"></div>
-          <div class="col-8">
+          <div class="col-"></div>
+          <div class="col-9">
               <div class="card mr-0" style="max-width:70rem; margin-top:5px;background-color:rgba(4,4,4,0.5);">
                    <img src="{{project.project_photo.url}}" data-target="#extraModal{{project.id}}" data-toggle="modal"class="card-img-top">
                      <div class="card-body">
@@ -34,12 +34,13 @@
                                  <img class="img-fluid rounded-circle" src="{{project.profile.profile_photo.url}}" class="" style="height: 50px;">
                                   By: <b>{{ project.profile.user }}</b>  from {{project.location}}</h6>
                               <hr class="text-light">
-                                <button class="btn  btn-outline-light one d-flex justify-content-end ml-1 fs-4" style="float:right; padding:10px; margin:5px;color:black;border-radius:27px;">Votes: {{ project.reviews.count| floatformat  }}</button>
-                                <button class="btn three d-flex justify-content-end fs-5" style="float:right; padding:10px; margin:5px;color:#ECD06F;border-radius:25px;">usability: {{ project.usability_rating| floatformat  }}</button>
+                                <button class="btn  btn-sm btn-outline-light one d-flex justify-content-end  fs-5" style="float:right; padding:10px; margin:5px;color:black;border-radius:27px;">Votes: {{ project.reviews.count| floatformat  }}</button>
+                                <button class="btn btn-sm three d-flex justify-content-end fs-5" style="float:right; padding:10px; margin:5px;color:#ECD06F;border-radius:25px;">usability: {{ project.usability_rating| floatformat  }}</button>
+                                <button class="btn four d-flex justify-content-end fs-5" style="float:right; padding:10px; margin:5px;color:#2699AA;border-radius:25px;">content: {{ project.content_rating| floatformat  }}</button>
+                                <button class="btn four d-flex justify-content-end  fs-5" style="float:right; padding:10px; margin:5px;color:#3C948B;border-radius:25px;">creativity: {{ project.creativity_rating| floatformat  }}</button>
                                 <button class="btn two d-flex justify-content-end fs-5" style="float:right; padding:10px; margin:5px;color:#DF6C4F;border-radius:25px;">design: {{ project.design_rating| floatformat  }}</button>
-                                <button class="btn four d-flex justify-content-end ml-1 fs-5" style="float:right; padding:10px; margin:5px;color:#2699AA;border-radius:25px;">content: {{ project.content_rating| floatformat  }}</button>
                                 <a href="/profile/{{project.profile.id}}" title="profile">
-                                  <button type="button" class="btn btn-lg btn-outline-light ml-1" style="border-radius:30px;"><a class="fs-4"href="{{ project.link }}" style="text-decoration:none;padding:10px; margin-top:5px; color:black;" target="_blank">visit site</a></button>
+                                  <button type="button" class="btn btn-lg btn-outline-light " style="border-radius:30px;"><a class="fs-5"href="{{ project.link }}" style="text-decoration:none;padding:10px; margin-top:5px; color:black;" target="_blank">Site</a></button>
                                 </a>
                              <br>
                              </div>
