@@ -5,31 +5,36 @@
 {% load crispy_forms_tags %}
 {% load static %}
 <div class="container">
+    <h1 class="media-heading text-center" style=""><b>Awwwards. Hub</b></h1>
+    <hr>
     <br> 
     <div class="container" style="">
       <div class="row">
           {% for project in projects %}
           <div class="col-1"></div>
-          <div class="col-7">
-              <div class="card mr-0" style="max-width:69rem; margin-top:5px;">
-                   <img src="{{project.project_photo.url}}" class="card-img-top">
+          <div class="col-8">
+              <div class="card mr-0" style="max-width:74rem; margin-top:5px;background-color:rgba(3,3,3,0.5);">
+                   <img src="{{project.project_photo.url}}" data-target="#extraModal{{project.id}}" data-toggle="modal"class="card-img-top">
                      <div class="card-body">
                        <div class="media">
                          <div class="media-left media-top">
-                            <hr>
+                            <hr class="text-light">
                              <div class="media-body">
                               <h5 class="media-heading" style="padding:10px; margin:5px"><b>{{ project.title }}</b></h5>
-                              <h6 class="media-content" style="padding:10px;float:right;"><em>{{ project.date |date:"F d, Y" }}</em></h6> 
-                              <h5 class="media-heading" style="padding:10px;">By: <b>{{ project.profile.user }}</b>  from {{project.location}}</h5>
-                              <hr>
-                               <button class=" one d-flex justify-content-end ml-5" style="float:right; padding:10px; margin:5px">Votes {{ project.reviews.count| floatformat  }}</button>
-                               <button class=" two d-flex justify-content-end" style="float:right; padding:10px; margin:5px">design {{ project.design_rating| floatformat  }}</button>
-                               <button class=" three d-flex justify-content-end" style="float:right; padding:10px; margin:5px">usability {{ project.usability_rating| floatformat  }}</button>
-                               <button class="four d-flex justify-content-end ml-5" style="float:right; padding:10px; margin:5px">content {{ project.content_rating| floatformat  }}</button>
+                              <h6 class="media-content " style="padding:10px;float:right;"><em>{{ project.date |date:"F d, Y" }}</em></h6> 
+
+                              <h6 class="media-content" style="padding:10px;">
+                                 <img class="img-fluid rounded-circle" src="{{project.profile.profile_photo.url}}" class="" style="height: 50px;">
+                                  By: <b>{{ project.profile.user }}</b>  from {{project.location}}</h6>
+                              <hr class="text-light">
+                                <button class="btn  btn-outline-light one d-flex justify-content-end ml-1 fs-4" style="float:right; padding:10px; margin:5px;color:black;border-radius:30px;">Votes: {{ project.reviews.count| floatformat  }}</button>
+                                <button class="btn three d-flex justify-content-end fs-4" style="float:right; padding:10px; margin:5px;color:#ECD06F;border-radius:25px;">usability {{ project.usability_rating| floatformat  }}</button>
+                                <button class="btn two d-flex justify-content-end fs-4" style="float:right; padding:10px; margin:5px;color:#DF6C4F;border-radius:25px;">design {{ project.design_rating| floatformat  }}</button>
+                                <button class="btn four d-flex justify-content-end ml-1 fs-4" style="float:right; padding:10px; margin:5px;color:#2699AA;border-radius:25px;">content {{ project.content_rating| floatformat  }}</button>
                                 <a href="/profile/{{project.profile.id}}" title="profile">
-                                  <button class="button ml-3"><a href="{{ project.link }}" style="text-decoration:none;" target="_blank">visit site</a></button>
+                                  <button type="button" class="btn btn-lg btn-outline-light ml-1" style="border-radius:30px;"><a class="fs-4"href="{{ project.link }}" style="text-decoration:none;padding:10px; margin-top:5px; color:black;" target="_blank">visit site</a></button>
                                 </a>
-                           <br>
+                             <br>
                              </div>
                          </div>
                        </div>
@@ -37,7 +42,7 @@
               </div>
           </div>
           <br>
-          <div class="col-3 ml-2" style="border-top: 2px solid #111;background-color: #ffffff;border-radius:10px; box-shadow: 2px 2px 5px rgba(3,3,3,0.5);">
+          <div class="col-2 ml-2" style="border-top: 2px solid #111;background-color: #ffffff;border-radius:10px; box-shadow: 2px 2px 5px rgba(3,3,3,0.5);">
             
             <hr>
                 <form action="{%url 'review' pk=project.id%}" method="post" enctype="multipart/form-data" id="sema">
@@ -55,15 +60,15 @@
     
 </div>
 <br>
-  <h3 class="media-heading text-center" style="font-weight:bold;">Comments</h3>
-<div class="container-fluid media shadow p-3 mb-4 bg-body rounded-top border-top border-2 border-secondary">
+<h3 class="media-heading text-center" style="font-weight:bold;">Comments</h3>
+<div class="container media shadow p-3 mb-4 bg-body rounded-top border-top border-2 border-secondary">
  <div class="row">
     {% for project in projects %}
     <div class="col-2"></div>
     <div class="col-5">
       <hr>
       <br>
-          <img class="img-fluid rounded-circle" src="{{project.profile.profile_photo.url}}" class="" style="height: 200px;">
+          <img class="img-fluid rounded-circle" src="{{project.profile.profile_photo.url}}" class="" style="height: 150px;">
          <h3 class="" style="padding:10px; margin:5px"> <b>{{ project.profile.user }}</b></h3>
          <br>
      
@@ -75,8 +80,10 @@
           
           {% for review in reviews %}
               {% if project.id == review.project.id %}
-                  <h5><strong>{{review.user}}  </strong> from <b>{{review.location}}.</b></h5>
-                  <p><b> Commented:</b> {{review.comment}}</p> <p><b>Rates:</b> usability: {{review.usability}}, content: {{review.content}} , design: {{review.design}}</p>
+                 <p><b> Comment:</b> {{review.comment}}</p> 
+                  <h5>By <strong>{{review.user}}  </strong> from <b>{{review.location}}.</b></h5>
+                 
+                  <p><b>Rates:</b> usability: <b>{{review.usability}}</b>, content: <b>{{review.content}} </b>, design: <b>{{review.design}}</b></p>
                  <p>{{ project.average_score | floatformat }}</p>
               {% endif %}
             {%endfor%} 
@@ -84,6 +91,32 @@
     {% endfor %} 
   </div>
 </div>
+{% for project in projects %}
+<!-- Modal -->
+<div class="modal fade" id="extraModal{{project.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLongTitle"> <b> {{project.title}} </b> Published on <em>{{project.date|date:" M d Y" }}</em> <br>By  <b>{{project.name}}</b></h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </div>
+      <div class="modal-body">
+        <img class="card-img-top" class="img-responsive" src="{{project.project_photo.url}}" data-target="#extraModal{{project.id}}" data-toggle="modal" size="80px200">
+        <br>
+        <hr>
+       
+        <h6>Location: <b>  {{project.location}}</b></h6>
+        <label>Technologies used: <b> {{project.technologies}} </b></label>
+        <h6><b>About: </b> {{project.description}}</h6>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %} 
 {% endblock %}
 <hr>
 <br>
