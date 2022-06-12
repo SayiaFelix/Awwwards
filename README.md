@@ -7,10 +7,10 @@
 ## Description
 In this application user/developer is able to post/upload his project and also rates other people projects depending on the userbility ,content,creativity and design.
 
-## API
-<!-- [Profile API](https://sir-awwwards.herokuapp.com/api/profile/)
+## API EndPoints    
+<!-- [Profile API EndPoints](https://sir-awwwards.herokuapp.com/api/profile/)
 
-[Projects API](https://sir-awwwards.herokuapp.com/api/project/) -->
+[Projects API EndPoints](https://sir-awwwards.herokuapp.com/api/project/) -->
 
 
 ## User Stories
