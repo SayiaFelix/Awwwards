@@ -11,7 +11,6 @@
     <title> Awwwards</title>
     {% endif %} 
     {% block styles %} {% bootstrap_css %}
-
     <link rel="stylesheet" href="{% static 'css/awards.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +22,7 @@
      {% endblock %}
 </head>
 
-<body style="background-color:#F5F5F5"> 
+<body style="background-color:#F4F7F6"> 
     <style>
     body {
       font-family: "Lato", sans-serif;
@@ -40,14 +39,14 @@
       background-color: #111;
       overflow-x: hidden;
       transition: 0.5s;
-      padding-top: 60px;
+      padding-top: 50px;
     }
     
     .sidenav a {
       padding: 8px 8px 8px 32px;
       text-decoration: none;
       font-size: 20px;
-      color: #818181;
+      color: #f;
       display: block;
       transition: 0.3s;
     }
@@ -116,10 +115,9 @@
 <div id="mySidenav" class="sidenav ">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <h3> <a href="{% url 'homepage' %}"  style="text-decoration: none; font-weight: bold; font-size:18px;"class="">Home</a></h3>
-    <h4> <a class="" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; font-size:18px;" title="User"><i class="fa-solid fa-user fa-lg"></i>{{user}}</a></h4>
-    <h4> <a href="{% url 'upload_project' %}" class=""><i class="fas fa-upload fa-lg" style="margin-right:px;"></i>Projects</a></h4>
-    <h4><a href="{% url 'add_profile' %}" class=""><i class="fa-solid fa-address-card fa-lg"></i>Profile</a></h4>
-    {% comment %} <a href="{% url 'review' review.id %} ">Services</a> {% endcomment %}
+    <h4> <a class="" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; font-size:19px;" title="User"><i class="fa-solid fa-user fa-lg mr-2"></i>{{user}}</a></h4>
+    <h4> <a href="{% url 'upload_project' %}" class=""><i class="fas fa-upload fa-lg mr-2" style="margin-right:px;"></i>Projects</a></h4>
+    <h4><a href="{% url 'add_profile' %}" class=""><i class="fa-solid fa-address-card fa-lg mr-2"></i>Profile</a></h4>
     <h4> <a href="/register" class=""> Register</a><h4>
     <h4> <a href="/logout" class="">Log Out</a><h4>
 
@@ -127,58 +125,34 @@
   
   <div id="main" >
     <div style="display: flex">
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-
-        <div class="col-3" style="text-align:left;">
-            <form class="form-inline mx-auto" role="search" action="{% url 'search' %}" method="get">
-                    <div class="form-group">
-                        <input type="text" class="form-control" role="search" placeholder="search project" aria-label="Search" name="title">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </div>
-                </form>
-
-        </div>
-        <div class="col-md-4 col-sm-3">
-         <h5 style="text-transform: uppercase; margin-top: 10px;"><strong>Awwwards.</strong> </h5> 
-            
-        </div>         
-           <h4> <a class="nav-link" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold" font-size="18px" title="User"><i class="fa-solid fa-user fa-lg"></i>{{user}}</a></h4>
-            <div class="col-2" style="background:black;" >
-            <h6 class="text-center" style="text-decoration: none; margin-top: 10px;text-align:right; color:white; font-size:15px; font-weight:bold;"><a text-decoration: none;  href="{% url 'upload_project' %}">SUBMIT YOUR SITE!</a></h6>
-            </div> 
-            
+            <span style="font-size:25px;cursor:pointer; color:black;margin-top:10px;" onclick="openNav()">&#9776; Menu</span>
+            <div class="col-4" style="text-align:left;">
+                <form class="form-inline mx-auto" role="search" action="{% url 'search' %}" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" role="search" placeholder="search project" aria-label="Search" name="title">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+            </div>
+            <div class="col-2"></div>
+           <div class="col-2" >         
+             <h5 style="margin-top: 10px; float:right;"> <a class="" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; margin-top:10px;color:black;"  title="User">{{user}} <i class="fa-solid fa-user ml-2"></i></a></h5>
+           </div> 
+           <div class="col-2" style="background:black;border-radius:6px; ">
+                <h6 style="margin-top: 15px;margin-right:15px; text-align:center;  float:right; font-size:16px; font-weight:bold;"><a  class="text-center"style="text-decoration: none; color:white;padding-top:10px;"  href="{% url 'upload_project' %}">SUBMIT  YOUR  SITE!</a></h6>
+          </div>     
     </div>
-   
       <hr>
       {% block content %}{%endblock%} 
-     {% include "footer.html" %} 
+      {% include "footer.html" %} 
+</div>
 
-  </div>
     {% block scripts %}
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     {% bootstrap_javascript %}
- 
       <script src="{% static 'js/script.js' %}"></script>
       {% endblock %}
-
-
-
-{% comment %} 
-<div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5" id="mySidebar">
-  <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
-  <a href="/" class="w3-bar-item w3-button w3-border-bottom" >Home</a>
-  {% comment %} 
-  {% endcomme
- 
-</div> {% endcomment %}
-
-{% comment %} <!-- Page Content -->
-<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
-
-  <div>
-  <button class="w3-button w3-white w3-xxlarge" onclick="w3_open()">&#9776;</button>
-  </div> {% endcomment %}
 
   <script>
     function openNav() {
@@ -194,11 +168,4 @@
     }
     </script>
 </body>
-    {% comment %} {% include "navbar.html" %}  {% endcomment %}
-    
-  
-
-
-</body>
-
 </html>
