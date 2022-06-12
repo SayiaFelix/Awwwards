@@ -7,6 +7,10 @@
 ## Description
 In this application user/developer is able to post/upload his project and also rates other people projects depending on the userbility ,content,creativity and design.
 
+## API
+[Profile Endpoint](https://sir-awwwards.herokuapp.com/api/profile/)
+[Projects Endpoint](https://sir-awwwards.herokuapp.com/api/project/)
+
 
 ## User Stories
 These are the behaviours/features that the application implements for use by a user.
@@ -14,10 +18,10 @@ These are the behaviours/features that the application implements for use by a u
 Users would like to:
 * View all projects submitted by any user.
 * Click on links to visit a live site.
-* Search for users.
+* Search for Project by title.
 * Must be signed up to vote
-* See averages for the three grading criterias
-* Grade Projects.
+* See averages for the four grading criterias
+* Rates Projects.
 
 
 ## Admin Abilities
