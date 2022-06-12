@@ -2,75 +2,93 @@
 {% block content %}
 {{ block.super}}
 {% load bootstrap4 %}
+{% load crispy_forms_tags %}
 {% load static %}
 <div class="container">
-    <br>
-    <br>
-   
-    <div class="container">
+    <br> 
+    <div class="container" style="">
       <div class="row">
-      <div class="col-1"></div>  
-        <div class="col-9">
           {% for project in projects %}
-    
-          <div class="card mr-0" style="max-width:70rem; margin-top:5px;">
-    
-            <img src="{{project.project_image.url}}" class="card-img-top">
-            <div class="card-body">
-              <div class="media">
-                <div class="media-left media-top">
-                  <a href="/profile/{{project.profile.id}}" title="profile">
-                    <img class="img-fluid rounded-circle" src="{{project.profile.profile_photo.url}}" class="media-object" style="height: 100px; width: 100px;">
-                    <button class="button"><a href="{{ project.link }}" target="_blank">view site</a></button>
-                  </a>
-    
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading" style="padding:10px; margin:5px">{{ project.title }}</h4>
-                  <h6 class="media-content" style="padding:10px; margin:5px">{{ project.date }}</h6>
-                   {% comment %} <img class="img-fluid" src="{{project.project_photo.url}}" style="height:200px;margin-top:5px;margin-bottom:5px;"> {% endcomment %}
-                  <button class=" one d-flex justify-content-end" style="float:right; padding:10px; margin:5px">Votes {{ project.reviews.count| floatformat  }}</button>
-                  <button class=" two d-flex justify-content-end" style="float:right; padding:10px; margin:5px">design {{ project.design_rating| floatformat  }}</button>
-                  <button class=" three d-flex justify-content-end" style="float:right; padding:10px; margin:5px">usability {{ project.usability_rating| floatformat  }}</button>
-                  <button class="four d-flex justify-content-end" style="float:right; padding:10px; margin:5px">content {{ project.content_rating| floatformat  }}</button>
-                </div>
+          <div class="col-1"></div>
+          <div class="col-7">
+              <div class="card mr-0" style="max-width:69rem; margin-top:5px;">
+                   <img src="{{project.project_photo.url}}" class="card-img-top">
+                     <div class="card-body">
+                       <div class="media">
+                         <div class="media-left media-top">
+                            <hr>
+                             <div class="media-body">
+                              <h5 class="media-heading" style="padding:10px; margin:5px"><b>{{ project.title }}</b></h5>
+                              <h6 class="media-content" style="padding:10px;float:right;"><em>{{ project.date |date:"F d, Y" }}</em></h6> 
+                              <h5 class="media-heading" style="padding:10px;">By: <b>{{ project.profile.user }}</b>  from {{project.location}}</h5>
+                              <hr>
+                               <button class=" one d-flex justify-content-end ml-5" style="float:right; padding:10px; margin:5px">Votes {{ project.reviews.count| floatformat  }}</button>
+                               <button class=" two d-flex justify-content-end" style="float:right; padding:10px; margin:5px">design {{ project.design_rating| floatformat  }}</button>
+                               <button class=" three d-flex justify-content-end" style="float:right; padding:10px; margin:5px">usability {{ project.usability_rating| floatformat  }}</button>
+                               <button class="four d-flex justify-content-end ml-5" style="float:right; padding:10px; margin:5px">content {{ project.content_rating| floatformat  }}</button>
+                                <a href="/profile/{{project.profile.id}}" title="profile">
+                                  <button class="button ml-3"><a href="{{ project.link }}" style="text-decoration:none;" target="_blank">visit site</a></button>
+                                </a>
+                           <br>
+                             </div>
+                         </div>
+                       </div>
+                     </div>
               </div>
-              <hr>
-              <div class="review-section">
-              
-              {% for review in reviews %}
-                {% if project.id == review.project.id %}
-    
-               <h5><strong>{{review.user}}  </strong> </h5>
-               <p><b> Comment:</b> {{review.comment}}</p> <p><b>Rates:</b> usability: {{review.usability}}, content: {{review.content}} , design: {{review.design}}</p>
-                <p>{{ project.average_score | floatformat }}</p>
-                {% endif %}
-    
-                {%endfor%}
-              <hr>
-                <form action="{%url 'review' pk=project.id%}" method="post" enctype="multipart/form-data" id="sema">
-                  {%csrf_token%}
-                  <table>
-                    {{ form }}
-                  </table>
-                  <button type="submit">Vote</button>
-                </form> 
-    
-              </div>
-            </div>
           </div>
-          {% endfor %}
-        </div>
+          <br>
+          <div class="col-3 ml-2" style="border-top: 2px solid #111;background-color: #ffffff;border-radius:10px; box-shadow: 2px 2px 5px rgba(3,3,3,0.5);">
+            
+            <hr>
+                <form action="{%url 'review' pk=project.id%}" method="post" enctype="multipart/form-data" id="sema">
+                    {%csrf_token%}
+                        {{ form|crispy}}
+                        <hr> 
+                    <button class="btn btn-sm btn-outline-secondary btn-block mr-2"style="border-radius: 5px;"type="submit">Vote</button>
+                    <br>
+                </form> 
+              <br>
+          </div>
+          <br><br><hr>
+        {% endfor %}
       </div>
-    </div>
+    
+</div>
+<br>
+  <h3 class="media-heading text-center" style="font-weight:bold;">Comments</h3>
+<div class="container-fluid media shadow p-3 mb-4 bg-body rounded-top border-top border-2 border-secondary">
+ <div class="row">
+    {% for project in projects %}
+    <div class="col-2"></div>
+    <div class="col-5">
+      <hr>
+      <br>
+          <img class="img-fluid rounded-circle" src="{{project.profile.profile_photo.url}}" class="" style="height: 200px;">
+         <h3 class="" style="padding:10px; margin:5px"> <b>{{ project.profile.user }}</b></h3>
+         <br>
+     
+    </div> 
+     <div class="col-5"style="border-bottom: 1px solid #111;border-radius:10px; box-shadow: 3px 3px 3px rgba(3,3,3,0.5);">
+      <br>
+            <h4 class="media-heading" style="">Project Title: <b>{{ project.title }}</b></h4>
+            <br>
+          
+          {% for review in reviews %}
+              {% if project.id == review.project.id %}
+                  <h5><strong>{{review.user}}  </strong> from <b>{{review.location}}.</b></h5>
+                  <p><b> Commented:</b> {{review.comment}}</p> <p><b>Rates:</b> usability: {{review.usability}}, content: {{review.content}} , design: {{review.design}}</p>
+                 <p>{{ project.average_score | floatformat }}</p>
+              {% endif %}
+            {%endfor%} 
+     </div> 
+    {% endfor %} 
+  </div>
 </div>
 {% endblock %}
-
+<hr>
+<br>
 {% block scripts %} {{block.super}}
   <script type="text/javascript" src="{ % static 'js/script.js'% }"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>{% bootstrap_javascript %}
-
   <script type="text/javascript" src="{%static 'js/script.js'%}"></script>
-
-
 {% endblock %}
