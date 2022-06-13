@@ -15,11 +15,13 @@ In this application user/developer is able to post/upload his project and also r
 
 ## Technology Used
 
+![](https://img.shields.io/badge/Code-python-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Code-django-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Code-postgress-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-HTML5-informational?style=flat&logo=html5&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-CSS3-informational?style=flat&logo=css3&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
-![](https://img.shields.io/badge/Code-python-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
-![](https://img.shields.io/badge/Code-django-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
+
 
 ## User Stories
 These are the behaviours/features that the application implements for use by a user.
@@ -90,10 +92,6 @@ Admin should:
 * To run the tests for the class files:
 
         $ python3.9 manage.py test
-
-## Technologies Used
-* Python3.9
-* Django framework and postgresql database
 
 ## License
 
