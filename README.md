@@ -7,6 +7,8 @@
 ## Description
 In this application user/developer is able to post/upload his project and also rates other people projects depending on the userbility ,content,creativity and design.
 
+Link to Awwards: 
+
 ## API EndPoints    
 [Profile API EndPoints](https://sir-awwwards.herokuapp.com/api/profile/)
 
@@ -65,8 +67,6 @@ Admin should:
 * pip
 * virtualenv
 * Requirements.txt
-
-## Live Demo
 
 ### Cloning
 * In your terminal:
