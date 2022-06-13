@@ -15,9 +15,9 @@ In this application user/developer is able to post/upload his project and also r
 
 ## Technology Used
 
-![](https://img.shields.io/badge/Code-python-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
-![](https://img.shields.io/badge/Code-django-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
-![](https://img.shields.io/badge/Code-postgress-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Code-python-informational?style=flat&logo=python&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Code-django-informational?style=flat&logo=django&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Code-postgress-informational?style=flat&logo=postgress&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-django-rest-framework-informational?style=flat&logo=javascript&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-HTML5-informational?style=flat&logo=html5&logoColor=white&color=brightgreen)
 ![](https://img.shields.io/badge/Code-CSS3-informational?style=flat&logo=css3&logoColor=white&color=brightgreen)
