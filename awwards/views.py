@@ -234,48 +234,41 @@ def login_user(request):
 
      return render(request,'registration/login.html')
 
-# def user_login(request):
-#             username = request.POST.get('username')
-#             password = request.POST.get('password1')
-#             email = request.POST.get('email')
-        
-#             data = {'success': 'You have register successfully'}
-#             return JsonResponse(data)
-
- 
 def register_user(request):
+
+    # form = UserRegisterForm.objects.all()
+    # response_data = {}
+
     if request.method == 'POST':
          form = UserRegisterForm(request.POST)
          if form.is_valid():
-             form.save()
-             username = form.cleaned_data['username']
-             password = form.cleaned_data['password1']
-             email = form.cleaned_data['email']
-             send_welcome_email(username,email) 
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            
 
-             user = authenticate(username=username, password=password)
-             login(request,user)
+            email = form.cleaned_data['email']
+            send_welcome_email(username,email) 
 
-             messages.success(request,f'Hello {username}, Your account was Successfully Created.You will receive our email shortly.Thank You!!!')
-             return redirect('add_profile')
+            user = authenticate(username=username, password=password)
+            login(request,user)
+
+            # response_data['username'] = username
+            # response_data['password'] = password
+
+            # UserRegisterForm.objects.create(
+            # username = username,
+            # password = password,
+            # )
+            # return JsonResponse(response_data)
+
+            messages.success(request,f'Hello {username}, Your account was Successfully Created.You will receive our email shortly.Thank You!!!')
+            return redirect('add_profile')
     else:
          form = UserRegisterForm()
     return render (request,'registration/register.html',{'form':form})
 
-# def user_register(request):
-#      if request.method == 'POST':
-#             username = request.POST.get('username')
-#             email = request.POST.get('email')
-#             password1 = request.POST.get('password1')
-#             password2 = request.POST.get('password2')
-           
-#             send_welcome_email(username,email) 
 
-        
-#             data = {'success': 'You have register successfully'}
-#             return JsonResponse(data)
-
- 
 @login_required
 def logout_user(request):
     logout(request)
