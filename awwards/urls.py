@@ -17,6 +17,8 @@ urlpatterns=[
     url('api-token-auth/', obtain_auth_token),
     url('api/profile/profile-id/(?P<pk>[0-9]+)/$',views.ProfileDescription.as_view()),
     url('api/project/project-id/(?P<pk>[0-9]+)/$',views.ProjectDescription.as_view()),
+    url('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
    
 ]
 
