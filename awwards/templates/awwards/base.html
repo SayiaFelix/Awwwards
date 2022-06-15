@@ -118,11 +118,11 @@
 <div id="mySidenav" class="sidenav ">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <hr>
-    <h3> <a href="{% url 'homepage' %}"  style="text-decoration: none; font-weight: bold; font-size:17px;"class="">Home</a></h3>
+    <h4> <a href="{% url 'homepage' %}"  style="text-decoration: none; font-weight: bold; "class="">Home</a></h4>
     <hr>
-    <h4> <a class="" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; font-size:17px;" title="User"><i class="fa-solid fa-user fa-lg mr-2"></i>{{user}}</a></h4>
+    <h4> <a class="" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold;" title="User"><i class="fa-solid fa-user fa-lg mr-2"></i>{{user}}</a></h4>
     <hr>
-    <h4> <a href="{% url 'upload_project' %}" class=""><i class="fas fa-upload fa-lg mr-2" style="margin-right:px;"></i>Projects</a></h4>
+    <h4> <a href="{% url 'upload_project' %}" class=""><i class="fas fa-upload fa-lg mr-2" style="m"></i>Projects</a></h4>
     <hr>
     <h4><a href="{% url 'add_profile' %}" class=""><i class="fa-solid fa-address-card fa-lg mr-2"></i>Profile</a></h4>
     <hr>
