@@ -294,7 +294,7 @@ def register_user(request):
             
 
             email = form.cleaned_data['email']
-            send_welcome_email(username,email) 
+            # send_welcome_email(username,email) 
 
             user = authenticate(username=username, password=password)
             login(request,user)
