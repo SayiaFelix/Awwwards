@@ -118,7 +118,7 @@
        
         <h6>Location: <b>  {{project.location}}</b></h6>
         <label>Technologies used: <b> {{project.technologies}} </b></label>
-        <p><b>About: </b> {{project.description}}</p>
+        <p><b>About: </b> {{project.description|safe}}</p>
         
            <button class="btn three d-flex justify-content-end" style="float:right; padding:10px; margin:px;color:#ECD06F;border-radius:25px;">usability: {{ project.usability_rating| floatformat  }}</button>
            <button class="btn four d-flex justify-content-end " style="float:right; padding:10px; margin:px;color:#2699AA;border-radius:25px;">content: {{ project.content_rating| floatformat  }}</button>

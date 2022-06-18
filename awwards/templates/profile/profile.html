@@ -43,7 +43,7 @@
               <span class="font-weight-bold">{{profile.user.c_user.all | length}}</span> Projects rated
             </li>
           </ul>
-          <h6 class=""> <b>Bio:</b>  {{profile.bio}}</h6>
+          <p class=""> <b>Bio:</b>  {{profile.bio|safe}}</p>
           <h6 class=""> <b>Contact:</b> <em> {{profile.contact}}</em></h6>
           <br>
            {% if profile.user == user %}
